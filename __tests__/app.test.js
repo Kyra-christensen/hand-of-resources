@@ -37,4 +37,20 @@ describe('hand-of-resources routes', () => {
     const res = await request(app).get(`/api/v1/boardGames/${expected.id}`);
     expect(res.body).toEqual({ ...expected });
   });
+
+  it ('updates a board game by id', async () => {
+    const game = await Game.insert({ gameName: 'Sorry', yearReleased: 1929, numOfPlayers: '2-4', description: 'Players move their three or four pieces around the board, attempting to get all of their pieces "home" before any other player.' });
+
+    const res = await request(app)
+      .patch(`/api/v1/boardGames/${game.id}`)
+      .send({ gameName: 'Life', yearReleased: 1960, numOfPlayers: '2-6',
+        description: 'simulates a person\'s travels through his or her life, from college to retirement, with jobs, marriage, and possible children along the way.' });
+    const expected = {
+      id: expect.any(String),
+      gameName: 'Life', yearReleased: 1960, numOfPlayers: '2-6',
+      description: 'simulates a person\'s travels through his or her life, from college to retirement, with jobs, marriage, and possible children along the way.',
+    };
+    expect(res.body).toEqual(expected);
+    expect(await Game.getById(game.id)).toEqual(expected);
+  });
 });
