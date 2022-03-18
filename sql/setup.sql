@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS boardGames;
 
 CREATE TABLE boardGames (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  game_name TEXT NOT NULL,
+  game_name TEXT,
   year_released INT,
   num_of_players TEXT,
   game_description TEXT 
