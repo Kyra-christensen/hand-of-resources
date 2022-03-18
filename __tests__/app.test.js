@@ -37,4 +37,18 @@ describe('hand-of-resources routes', () => {
     const res = await request(app).get(`/api/v1/boardGames/${expected.id}`);
     expect(res.body).toEqual({ ...expected });
   });
+
+  it ('updates a board game by id', async () => {
+    const expected = {
+      id: expect.any(String),
+      gameName: 'Scrabble',
+      yearReleased: 1938,
+      numOfPlayers: '2-4',
+      description: 'A word game in which two to four players score points by placing tiles, each bearing a single letter, onto a game board divided into a 15U+00d715 grid of squares.'
+    };
+    const res = await request(app)
+      .patch('/api/v1/boardGames')
+      .send({ numOfPlayers: '2-4' });
+    expect(res.body).toEqual(expected);
+  });
 });
