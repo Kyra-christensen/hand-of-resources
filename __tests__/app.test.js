@@ -31,4 +31,10 @@ describe('hand-of-resources routes', () => {
     const res = await request(app).get('/api/v1/boardGames');
     expect(res.body).toEqual(expected);
   });
+
+  it ('gets a board game by id', async () => {
+    const expected = await Game.getById(1);
+    const res = await request(app).get(`/api/v1/boardGames/${expected.id}`);
+    expect(res.body).toEqual({ ...expected });
+  });
 });
