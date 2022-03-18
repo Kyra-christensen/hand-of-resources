@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const Game = require('../lib/models/BoardGame');
 
 describe('hand-of-resources routes', () => {
   beforeEach(() => {
@@ -23,5 +24,11 @@ describe('hand-of-resources routes', () => {
     const res = await request(app).post('/api/v1/boardGames').send(expected);
 
     expect(res.body).toEqual({ id: expect.any(String), ...expected });
+  });
+
+  it ('gets a list of board games', async () => {
+    const expected = await Game.getAll();
+    const res = await request(app).get('/api/v1/boardGames');
+    expect(res.body).toEqual(expected);
   });
 });
