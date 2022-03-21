@@ -29,7 +29,17 @@ describe('hand-of-resources routes', () => {
 
   it ('gets a list of songs', async () => {
     const expected = await Song.getAll();
+
     const res = await request(app).get('/api/v1/songs');
+
     expect(res.body).toEqual(expected);
+  });
+
+  it ('gets a song by id', async () => {
+    const expected = await Song.getById(1);
+
+    const res = await request(app).get(`/api/v1/songs/${expected.id}`);
+
+    expect(res.body).toEqual({ ...expected });
   });
 });
