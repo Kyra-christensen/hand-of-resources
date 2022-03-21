@@ -35,4 +35,20 @@ describe('hand-of-resources routes', () => {
     const res = await request(app).get(`/api/v1/animals/${expected.id}`);
     expect(res.body).toEqual({ ...expected });
   });
+
+  it ('updates an animal by id', async () => {
+    const animal = await Animal.insert({ animalName: 'Cheetah', lifeSpan: '12 years', speed: '50 - 80 mph' });
+    const res = await request(app)
+      .patch(`/api/v1/animals/${animal.id}`)
+      .send({ animalName: 'Lion', lifeSpan: '10 - 15 years',
+        speed: '50mph' });
+    const expected = {
+      id: expect.any(String),
+      animalName: 'Lion', 
+      lifeSpan: '10 - 15 years',
+      speed: '50mph'
+    };
+    expect(res.body).toEqual(expected);
+    expect(await Animal.getById(animal.id)).toEqual(expected);
+  });
 });
