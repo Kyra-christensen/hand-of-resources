@@ -62,4 +62,12 @@ describe('hand-of-resources routes', () => {
 
     expect(await Song.getById(song.id)).toEqual(expected);
   });
+
+  it ('deletes a song by id', async () => {
+    const expected = await Song.getById(1);
+
+    const res = await request(app).delete(`/api/v1/songs/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+  });
 });
