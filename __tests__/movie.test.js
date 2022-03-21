@@ -56,4 +56,11 @@ describe('hand-of-resources routes', () => {
     expect(res.body).toEqual(expected);
     expect(await Movie.getById(movie.id)).toEqual(expected);
   });
+
+  it ('deletes a movie by id', async () => {
+    const expected = await Movie.getById(1);
+    const res = await request(app).delete(`/api/v1/movies/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+  });
 });
