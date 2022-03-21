@@ -25,10 +25,11 @@ describe('hand-of-resources routes', () => {
 
     expect(res.body).toEqual({ id: expect.any(String), ...expected });
   });
-});
 
-it ('gets a list of songs', async () => {
-  const expected = await Song.getAll();
-  const res = await request(app).get('/api/v1/songs');
-  expect(res.body).toEqual(expected);
+
+  it ('gets a list of songs', async () => {
+    const expected = await Song.getAll();
+    const res = await request(app).get('/api/v1/songs');
+    expect(res.body).toEqual(expected);
+  });
 });
