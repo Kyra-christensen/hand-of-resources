@@ -17,7 +17,7 @@ describe('hand-of-resources routes', () => {
       songTitle: 'Good Girl',
       artistName: 'Morganne',
       albumName: 'Good Girl',
-      yearRealeased: 2022
+      released: 2022
     };
     
     const res = await request(app).post('/api/v1/songs').send(expected);

@@ -22,10 +22,10 @@ CREATE TABLE songs (
   song_title TEXT,
   artist_name TEXT,
   album_name TEXT,
-  year_released INT
+  released INT
 );
 
 INSERT INTO
-  songs (song_title, artist_name, album_name, year_released)
+  songs (song_title, artist_name, album_name, released)
 VALUES  
   ('Good Girl', 'Morganne', 'Good Girl', 2022);
