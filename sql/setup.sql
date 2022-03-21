@@ -4,6 +4,7 @@
 DROP TABLE IF EXISTS boardGames;
 DROP TABLE IF EXISTS songs;
 DROP TABLE IF EXISTS animals;
+DROP TABLE IF EXISTS movies;
 
 CREATE TABLE boardGames (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -42,3 +43,15 @@ INSERT INTO
   animals (animal_name, life_span, speed)
 VALUES
   ('Cheetah', '12 years', '50 - 80 mph');
+
+  CREATE TABLE movies (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    movie_title TEXT,
+    director_name TEXT,
+    released INT
+  );
+
+  INSERT INTO
+    movies (movie_title, director_name, released)
+  VALUES
+    ('Spirted Away', 'Hayao Miyazaki', 2001);
