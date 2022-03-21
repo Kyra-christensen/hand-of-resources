@@ -14,8 +14,8 @@ describe('hand-of-resources routes', () => {
 
   it ('creates a movie', async () => {
     const expected = {
-      movie_title: 'Ponyo',
-      director_name: 'Hayao Miyazaki',
+      movieTitle: 'Ponyo',
+      directorName: 'Hayao Miyazaki',
       released: 2008,
     };
     const res = await request(app).post('/api/v1/movies').send(expected);
