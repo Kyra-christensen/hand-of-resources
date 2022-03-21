@@ -36,4 +36,24 @@ describe('hand-of-resources routes', () => {
     const res = await request(app).get(`/api/v1/characters/${expected.id}`);
     expect(res.body).toEqual({ ...expected });
   });
+
+  it ('updates a character by id', async () => {
+    const character = await Character.insert({ characterName: 'Tanjiro Kamado',
+      age: 13,
+      fromAnime: 'Demon Slayer' });
+
+    const res = await request(app)
+      .patch(`/api/v1/characters/${character.id}`)
+      .send({ characterName: 'Tanjiro Kamado',
+        age: 16,
+        fromAnime: 'Demon Slayer' });
+    const expected = {
+      id: expect.any(String),
+      characterName: 'Tanjiro Kamado',
+      age: 16,
+      fromAnime: 'Demon Slayer'
+    };
+    expect(res.body).toEqual(expected);
+    expect(await Character.getById(character.id)).toEqual(expected);
+  });
 });
