@@ -15,9 +15,9 @@ describe('hand-of-resources routes', () => {
 
   it ('creates a character', async () => {
     const expected = {
-      character_name: 'Tanjiro Kamado',
+      characterName: 'Tanjiro Kamado',
       age: 13,
-      from_anime: 'Demon Slayer',
+      fromAnime: 'Demon Slayer',
     };
     const res = await request(app).post('/api/v1/characters').send(expected);
 
