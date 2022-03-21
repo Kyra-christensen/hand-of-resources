@@ -30,4 +30,10 @@ describe('hand-of-resources routes', () => {
     const res = await request(app).get('/api/v1/characters');
     expect(res.body).toEqual(expected);
   });
+
+  it ('gets a character by id', async () => {
+    const expected = await Character.getById(1);
+    const res = await request(app).get(`/api/v1/characters/${expected.id}`);
+    expect(res.body).toEqual({ ...expected });
+  });
 });
