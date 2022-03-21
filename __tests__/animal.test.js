@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const Animal = require('../lib/models/Animal');
 
 describe('hand-of-resources routes', () => {
   beforeEach(() => {
@@ -23,5 +24,9 @@ describe('hand-of-resources routes', () => {
     expect(res.body).toEqual({ id: expect.any(String), ...expected });
   });
 
-
+  it ('gets a list of animals', async () => {
+    const expected = await Animal.getAll();
+    const res = await request(app).get('/api/v1/animals');
+    expect(res.body).toEqual(expected);
+  });
 });
