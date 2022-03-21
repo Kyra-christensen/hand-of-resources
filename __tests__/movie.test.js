@@ -35,4 +35,25 @@ describe('hand-of-resources routes', () => {
     const res = await request(app).get(`/api/v1/movies/${expected.id}`);
     expect(res.body).toEqual({ ...expected });
   });
+  
+  it ('updates a movie by id', async () => {
+    const movie = await Movie.insert({ movieTitle: 'Spirited Away',
+      directorName: 'Hayao Miyazaki',
+      released: 2001, });
+
+    const res = await request(app)
+      .patch(`/api/v1/movies/${movie.id}`)
+      .send({ movieTitle: 'Ponyo',
+        directorName: 'Hayao Miyazaki',
+        released: 2008 });
+        
+    const expected = {
+      id: expect.any(String),
+      movieTitle: 'Ponyo',
+      directorName: 'Hayao Miyazaki',
+      released: 2008
+    };
+    expect(res.body).toEqual(expected);
+    expect(await Movie.getById(movie.id)).toEqual(expected);
+  });
 });
