@@ -14,8 +14,8 @@ describe('hand-of-resources routes', () => {
 
   it ('creates an animal', async () => {
     const expected = {
-      animal_name: 'Lion',
-      life_span: '10 - 15 years',
+      animalName: 'Lion',
+      lifeSpan: '10 - 15 years',
       speed: '50mph'
     };
     const res = await request(app).post('/api/v1/animals').send(expected);
@@ -23,5 +23,5 @@ describe('hand-of-resources routes', () => {
     expect(res.body).toEqual({ id: expect.any(String), ...expected });
   });
 
-  
+
 });
