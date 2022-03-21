@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS boardGames;
 DROP TABLE IF EXISTS songs;
 DROP TABLE IF EXISTS animals;
 DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS characters;
 
 CREATE TABLE boardGames (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -55,3 +56,15 @@ VALUES
     movies (movie_title, director_name, released)
   VALUES
     ('Spirted Away', 'Hayao Miyazaki', 2001);
+  
+CREATE TABLE characters (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  character_name TEXT,
+  age INT,
+  from_anime TEXT
+);
+
+INSERT INTO
+  characters (character_name, age, from_anime)
+VALUES
+  ('Tanjiro Kamado', 13, 'Demon Slayer');
