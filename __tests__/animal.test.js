@@ -29,4 +29,10 @@ describe('hand-of-resources routes', () => {
     const res = await request(app).get('/api/v1/animals');
     expect(res.body).toEqual(expected);
   });
+
+  it ('gets an animal by id', async () => {
+    const expected = await Animal.getById(1);
+    const res = await request(app).get(`/api/v1/animals/${expected.id}`);
+    expect(res.body).toEqual({ ...expected });
+  });
 });
