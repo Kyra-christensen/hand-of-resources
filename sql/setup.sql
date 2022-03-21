@@ -3,6 +3,7 @@
 
 DROP TABLE IF EXISTS boardGames;
 DROP TABLE IF EXISTS songs;
+DROP TABLE IF EXISTS animals;
 
 CREATE TABLE boardGames (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -29,3 +30,15 @@ INSERT INTO
   songs (song_title, artist_name, album_name, released)
 VALUES  
   ('Good Girl', 'Morganne', 'Good Girl', 2022);
+
+CREATE TABLE animals (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  animal_name TEXT,
+  life_span TEXT,
+  speed TEXT
+);
+
+INSERT INTO 
+  animals (animal_name, life_span, speed)
+VALUES
+  ('Cheetah', '12 years', '50 - 80 mph');
