@@ -51,4 +51,11 @@ describe('hand-of-resources routes', () => {
     expect(res.body).toEqual(expected);
     expect(await Animal.getById(animal.id)).toEqual(expected);
   });
+
+  it ('deletes an animal by id', async () => {
+    const expected = await Animal.getById(1);
+    const res = await request(app).delete(`/api/v1/animals/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+  });
 });
