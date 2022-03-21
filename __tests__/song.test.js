@@ -42,4 +42,24 @@ describe('hand-of-resources routes', () => {
 
     expect(res.body).toEqual({ ...expected });
   });
+
+  it ('updates a song by id', async () => {
+    const song = await Song.insert({ songTitle: 'Good Girl', artistName: 'Morganne', albumName: 'Good Girl', released: 2022 });
+
+    const res = await request(app)
+      .patch(`/api/v1/songs/${song.id}`)
+      .send({ songTitle: 'Help Herself', artistName: 'bbno$',  albumName: 'Help Herself', released: 2021 });
+
+    const expected = {
+      id: expect.any(String),
+      songTitle: 'Help Herself', 
+      artistName: 'bbno$',  
+      albumName: 'Help Herself', 
+      released: 2021,
+    };
+
+    expect(res.body).toEqual(expected);
+
+    expect(await Song.getById(song.id)).toEqual(expected);
+  });
 });
