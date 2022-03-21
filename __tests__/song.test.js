@@ -14,13 +14,13 @@ describe('hand-of-resources routes', () => {
 
   it ('creates a song', async () => {
     const expected = {
-      song_title: 'Good Girl',
-      artist_name: 'Morganne',
-      album_name: 'Good Girl',
-      year_realeased: 2022
+      songTitle: 'Good Girl',
+      artistName: 'Morganne',
+      albumName: 'Good Girl',
+      yearRealeased: 2022
     };
     
-    const res = await (await request(app).post('/api/v1/songs')).send(expected);
+    const res = await request(app).post('/api/v1/songs').send(expected);
 
     expect(res.body).toEqual({ id: expect.any(String), ...expected });
   });
