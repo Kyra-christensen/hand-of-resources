@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const Character = require('../lib/models/Character');
 
 describe('hand-of-resources routes', () => {
   beforeEach(() => {
@@ -22,5 +23,11 @@ describe('hand-of-resources routes', () => {
     const res = await request(app).post('/api/v1/characters').send(expected);
 
     expect(res.body).toEqual({ id: expect.any(String), ...expected });
+  });
+
+  it ('gets a list of characters', async () => {
+    const expected = await Character.getAll();
+    const res = await request(app).get('/api/v1/characters');
+    expect(res.body).toEqual(expected);
   });
 });
